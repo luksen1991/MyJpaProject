@@ -1,19 +1,38 @@
 package info.lukasznowicki.jpa.domain;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Employees")
 public class Employee {
 
 	@Id
 	@GeneratedValue
 	private int id;
+	@Column(name="Name",nullable=false,length=10)
 	private String name;
+	@Column(name="Sourname", columnDefinition="VARCHAR(10) NOT NULL")
 	private String sourname;
+	@Column (name = "Salary")
 	private double salary;
+	@Column(name="Salary2",precision=10,scale=2)
+	private BigDecimal salary2;
+
+		
+	public BigDecimal getSalary2() {
+		return salary2;
+	}
+
+	public void setSalary2(BigDecimal salary2) {
+		this.salary2 = salary2;
+	}
 
 	public int getId() {
 		return id;
