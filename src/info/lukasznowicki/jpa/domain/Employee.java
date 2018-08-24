@@ -1,6 +1,7 @@
 package info.lukasznowicki.jpa.domain;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -8,12 +9,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Employees")
+@SecondaryTable(name = "Address")
 public class Employee {
 
 	@Id
@@ -28,8 +31,50 @@ public class Employee {
 	@Column(name = "Salary2", precision = 10, scale = 2)
 	private BigDecimal salary2;
 	@Column(name = "Date", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date date;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DateAddAddress", table = "Address")
+	private Date dateAddress;
+	@Column(name = "ZipCode", table = "Address")
+	private String zipCode;
+	@Column(name = "Street", table = "Address")
+	private String street;
+	@Column(name = "StreetNumber", table = "Address")
+	private int streetNumber;
+
+	public Date getDateAddress() {
+		return dateAddress;
+	}
+
+	public void setDateAddress(Date dateAddress) {
+		this.dateAddress = dateAddress;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(int streetNumber) {
+		this.streetNumber = streetNumber;
+	}
 
 	public Date getDate() {
 		return date;
