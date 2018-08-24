@@ -1,6 +1,7 @@
 package info.lukasznowicki.jpa;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,19 +22,23 @@ public class Main {
 		employee.setSourname("Nowicki");
 		employee.setSalary(5000.0);
 		employee.setSalary2(new BigDecimal("12345.5"));
+		employee.setDate(new Date());
 		
 		Employee employee2 = new Employee();
 		employee2.setName("Test2");
 		employee2.setSourname("Test2");
 		employee2.setSalary(3000.0);
 		employee2.setSalary2(new BigDecimal("12345.57"));
+		employee2.setDate(new Date());
 		
 		Employee employee3 = new Employee();
 		employee3.setName("test3");
 		employee3.setSourname("test3");
 		employee3.setSalary(25000.0);
 		employee3.setSalary2(new BigDecimal("12345.6"));
+		employee3.setDate(new Date());
 
+		
 		entityManager.getTransaction().begin();
 		entityManager.persist(employee);
 		entityManager.persist(employee2);
