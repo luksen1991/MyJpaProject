@@ -28,8 +28,7 @@ public class PossibleTypes {
 
 	@Transient
 	private int ignoreField;
-	
-	
+
 	public int getIgnoreField() {
 		return ignoreField;
 	}

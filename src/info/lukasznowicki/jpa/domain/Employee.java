@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="Employees2")
+@Table(name = "Employees3")
 public class Employee {
 
 	@Id
@@ -32,17 +32,22 @@ public class Employee {
 	private String sourname;
 	@Column(name = "Salary")
 	private double salary;
-	@Column(name = "Salary2", precision = 10, scale = 2)
-	private BigDecimal salary2;
-	@Column(name = "Date", nullable = false)
+//	@Column(name = "Salary2", precision = 10, scale = 2)
+//	private BigDecimal salary2;
+//	@Column(name = "Date", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	@Column(name = "Tax", scale = 2)
+	private double tax;
 
 	@OneToOne
-	@JoinColumn(name="addresId")
-	private Address data;	
+	@JoinColumn(name = "addresId")
+	private Address data;
 
-	
+	public double getTax() {
+		return tax;
+	}
+
 	public Address getData() {
 		return data;
 	}
@@ -89,14 +94,6 @@ public class Employee {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public BigDecimal getSalary2() {
-		return salary2;
-	}
-
-	public void setSalary2(BigDecimal salary2) {
-		this.salary2 = salary2;
 	}
 
 	public long getId() {
