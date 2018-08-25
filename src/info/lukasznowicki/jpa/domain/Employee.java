@@ -6,22 +6,26 @@ import java.util.Date;
 
 import javax.annotation.Generated;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Employees")
-@SecondaryTable(name = "Address")
+@Table(name="Employees2")
 public class Employee {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column(name = "Name", nullable = false, length = 10)
 	private String name;
 	@Column(name = "Sourname", columnDefinition = "VARCHAR(10) NOT NULL")
@@ -34,46 +38,49 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DateAddAddress", table = "Address")
-	private Date dateAddress;
-	@Column(name = "ZipCode", table = "Address")
-	private String zipCode;
-	@Column(name = "Street", table = "Address")
-	private String street;
-	@Column(name = "StreetNumber", table = "Address")
-	private int streetNumber;
+	@OneToOne
+	@JoinColumn(name="addresId")
+	private Address data;	
+
+	
+	public Address getData() {
+		return data;
+	}
+
+	public void setData(Address data) {
+		this.data = data;
+	}
 
 	public Date getDateAddress() {
-		return dateAddress;
+		return data.dateAddress;
 	}
 
 	public void setDateAddress(Date dateAddress) {
-		this.dateAddress = dateAddress;
+		this.data.dateAddress = dateAddress;
 	}
 
 	public String getZipCode() {
-		return zipCode;
+		return data.zipCode;
 	}
 
 	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+		this.data.zipCode = zipCode;
 	}
 
 	public String getStreet() {
-		return street;
+		return data.street;
 	}
 
 	public void setStreet(String street) {
-		this.street = street;
+		this.data.street = street;
 	}
 
 	public int getStreetNumber() {
-		return streetNumber;
+		return data.streetNumber;
 	}
 
 	public void setStreetNumber(int streetNumber) {
-		this.streetNumber = streetNumber;
+		this.data.streetNumber = streetNumber;
 	}
 
 	public Date getDate() {
@@ -92,7 +99,7 @@ public class Employee {
 		this.salary2 = salary2;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
