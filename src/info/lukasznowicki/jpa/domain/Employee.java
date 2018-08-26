@@ -19,8 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "Employees3")
+@Entity(name="Workers")
+@Table(name = "Employees4") // priority 
 public class Employee {
 
 	@Id
